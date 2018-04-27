@@ -1,0 +1,3 @@
+/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/rebuild_cache.dir
+/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/RS485_Master.dir
+/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/edit_cache.dir
