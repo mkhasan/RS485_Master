@@ -1,4 +1,4 @@
-The system is: Linux - 4.13.0-16-generic - x86_64
+The system is: Linux - 4.13.0-39-generic - x86_64
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
 Compiler: /usr/bin/cc 
 Build flags: 
@@ -28,28 +28,28 @@ The CXX compiler identification is GNU, found in "/home/usrc/Kiswire/RS485_Maste
 Determining if the C compiler works passed with the following output:
 Change Dir: /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_8d2b0/fast"
-/usr/bin/make -f CMakeFiles/cmTC_8d2b0.dir/build.make CMakeFiles/cmTC_8d2b0.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_175ea/fast"
+/usr/bin/make -f CMakeFiles/cmTC_175ea.dir/build.make CMakeFiles/cmTC_175ea.dir/build
 make[1]: Entering directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_8d2b0.dir/testCCompiler.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_8d2b0.dir/testCCompiler.c.o   -c /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_8d2b0
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8d2b0.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_8d2b0.dir/testCCompiler.c.o  -o cmTC_8d2b0 
+Building C object CMakeFiles/cmTC_175ea.dir/testCCompiler.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_175ea.dir/testCCompiler.c.o   -c /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_175ea
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_175ea.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_175ea.dir/testCCompiler.c.o  -o cmTC_175ea 
 make[1]: Leaving directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_df541/fast"
-/usr/bin/make -f CMakeFiles/cmTC_df541.dir/build.make CMakeFiles/cmTC_df541.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_ed158/fast"
+/usr/bin/make -f CMakeFiles/cmTC_ed158.dir/build.make CMakeFiles/cmTC_ed158.dir/build
 make[1]: Entering directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_df541.dir/CMakeCCompilerABI.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_df541.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.9/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_df541
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_df541.dir/link.txt --verbose=1
-/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_df541.dir/CMakeCCompilerABI.c.o  -o cmTC_df541 
+Building C object CMakeFiles/cmTC_ed158.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_ed158.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.9/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_ed158
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ed158.dir/link.txt --verbose=1
+/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_ed158.dir/CMakeCCompilerABI.c.o  -o cmTC_ed158 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper
@@ -61,9 +61,9 @@ Thread model: posix
 gcc version 7.2.0 (Ubuntu 7.2.0-8ubuntu3.2) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_df541' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccPZzuZb.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_df541 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_df541.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_df541' '-mtune=generic' '-march=x86-64'
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_ed158' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccg5KfCW.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_ed158 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_ed158.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_ed158' '-mtune=generic' '-march=x86-64'
 make[1]: Leaving directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp'
 
 
@@ -71,14 +71,14 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_df541/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_df541.dir/build.make CMakeFiles/cmTC_df541.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_ed158/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_ed158.dir/build.make CMakeFiles/cmTC_ed158.dir/build]
   ignore line: [make[1]: Entering directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_df541.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_df541.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.9/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_df541]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_df541.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_df541.dir/CMakeCCompilerABI.c.o  -o cmTC_df541 ]
+  ignore line: [Building C object CMakeFiles/cmTC_ed158.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_ed158.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.9/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_ed158]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ed158.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_ed158.dir/CMakeCCompilerABI.c.o  -o cmTC_ed158 ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/cc]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper]
@@ -90,13 +90,13 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 7.2.0 (Ubuntu 7.2.0-8ubuntu3.2) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_df541' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccPZzuZb.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_df541 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_df541.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_ed158' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccg5KfCW.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_ed158 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_ed158.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccPZzuZb.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccg5KfCW.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -116,7 +116,7 @@ Parsed C implicit link information from above output:
     arg [-znow] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_df541] ==> ignore
+    arg [cmTC_ed158] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o] ==> ignore
@@ -128,7 +128,7 @@ Parsed C implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../..]
-    arg [CMakeFiles/cmTC_df541.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_ed158.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--as-needed] ==> ignore
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -158,14 +158,14 @@ Parsed C implicit link information from above output:
 Detecting C [-std=c11] compiler features compiled with the following output:
 Change Dir: /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_59350/fast"
-/usr/bin/make -f CMakeFiles/cmTC_59350.dir/build.make CMakeFiles/cmTC_59350.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_89734/fast"
+/usr/bin/make -f CMakeFiles/cmTC_89734.dir/build.make CMakeFiles/cmTC_89734.dir/build
 make[1]: Entering directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_59350.dir/feature_tests.c.o
-/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_59350.dir/feature_tests.c.o   -c /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_59350
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_59350.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_59350.dir/feature_tests.c.o  -o cmTC_59350 
+Building C object CMakeFiles/cmTC_89734.dir/feature_tests.c.o
+/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_89734.dir/feature_tests.c.o   -c /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_89734
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_89734.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_89734.dir/feature_tests.c.o  -o cmTC_89734 
 make[1]: Leaving directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp'
 
 
@@ -178,14 +178,14 @@ make[1]: Leaving directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMa
 Detecting C [-std=c99] compiler features compiled with the following output:
 Change Dir: /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_922d2/fast"
-/usr/bin/make -f CMakeFiles/cmTC_922d2.dir/build.make CMakeFiles/cmTC_922d2.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_a500b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_a500b.dir/build.make CMakeFiles/cmTC_a500b.dir/build
 make[1]: Entering directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_922d2.dir/feature_tests.c.o
-/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_922d2.dir/feature_tests.c.o   -c /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_922d2
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_922d2.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_922d2.dir/feature_tests.c.o  -o cmTC_922d2 
+Building C object CMakeFiles/cmTC_a500b.dir/feature_tests.c.o
+/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_a500b.dir/feature_tests.c.o   -c /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_a500b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a500b.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_a500b.dir/feature_tests.c.o  -o cmTC_a500b 
 make[1]: Leaving directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp'
 
 
@@ -198,14 +198,14 @@ make[1]: Leaving directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMa
 Detecting C [-std=c90] compiler features compiled with the following output:
 Change Dir: /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_ac5b5/fast"
-/usr/bin/make -f CMakeFiles/cmTC_ac5b5.dir/build.make CMakeFiles/cmTC_ac5b5.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_25b8b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_25b8b.dir/build.make CMakeFiles/cmTC_25b8b.dir/build
 make[1]: Entering directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_ac5b5.dir/feature_tests.c.o
-/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_ac5b5.dir/feature_tests.c.o   -c /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_ac5b5
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ac5b5.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_ac5b5.dir/feature_tests.c.o  -o cmTC_ac5b5 
+Building C object CMakeFiles/cmTC_25b8b.dir/feature_tests.c.o
+/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_25b8b.dir/feature_tests.c.o   -c /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_25b8b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_25b8b.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_25b8b.dir/feature_tests.c.o  -o cmTC_25b8b 
 make[1]: Leaving directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp'
 
 
@@ -216,28 +216,28 @@ make[1]: Leaving directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMa
 Determining if the CXX compiler works passed with the following output:
 Change Dir: /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_3096f/fast"
-/usr/bin/make -f CMakeFiles/cmTC_3096f.dir/build.make CMakeFiles/cmTC_3096f.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_900f3/fast"
+/usr/bin/make -f CMakeFiles/cmTC_900f3.dir/build.make CMakeFiles/cmTC_900f3.dir/build
 make[1]: Entering directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_3096f.dir/testCXXCompiler.cxx.o
-/usr/bin/c++     -o CMakeFiles/cmTC_3096f.dir/testCXXCompiler.cxx.o -c /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_3096f
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3096f.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_3096f.dir/testCXXCompiler.cxx.o  -o cmTC_3096f 
+Building CXX object CMakeFiles/cmTC_900f3.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTC_900f3.dir/testCXXCompiler.cxx.o -c /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_900f3
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_900f3.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_900f3.dir/testCXXCompiler.cxx.o  -o cmTC_900f3 
 make[1]: Leaving directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_2041b/fast"
-/usr/bin/make -f CMakeFiles/cmTC_2041b.dir/build.make CMakeFiles/cmTC_2041b.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_24205/fast"
+/usr/bin/make -f CMakeFiles/cmTC_24205.dir/build.make CMakeFiles/cmTC_24205.dir/build
 make[1]: Entering directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_2041b.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/c++     -o CMakeFiles/cmTC_2041b.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.9/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_2041b
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2041b.dir/link.txt --verbose=1
-/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_2041b.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_2041b 
+Building CXX object CMakeFiles/cmTC_24205.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTC_24205.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.9/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_24205
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_24205.dir/link.txt --verbose=1
+/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_24205.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_24205 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper
@@ -249,9 +249,9 @@ Thread model: posix
 gcc version 7.2.0 (Ubuntu 7.2.0-8ubuntu3.2) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_2041b' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccYMdI7C.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_2041b /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_2041b.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_2041b' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_24205' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccwOaxrp.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_24205 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_24205.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_24205' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
 make[1]: Leaving directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp'
 
 
@@ -259,14 +259,14 @@ Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_2041b/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_2041b.dir/build.make CMakeFiles/cmTC_2041b.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_24205/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_24205.dir/build.make CMakeFiles/cmTC_24205.dir/build]
   ignore line: [make[1]: Entering directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_2041b.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_2041b.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.9/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_2041b]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2041b.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_2041b.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_2041b ]
+  ignore line: [Building CXX object CMakeFiles/cmTC_24205.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_24205.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.9/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_24205]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_24205.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_24205.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_24205 ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/c++]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper]
@@ -278,13 +278,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 7.2.0 (Ubuntu 7.2.0-8ubuntu3.2) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_2041b' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccYMdI7C.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_2041b /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_2041b.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_24205' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccwOaxrp.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_24205 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_24205.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccYMdI7C.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccwOaxrp.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -304,7 +304,7 @@ Parsed CXX implicit link information from above output:
     arg [-znow] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_2041b] ==> ignore
+    arg [cmTC_24205] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o] ==> ignore
@@ -316,7 +316,7 @@ Parsed CXX implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../..]
-    arg [CMakeFiles/cmTC_2041b.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_24205.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -344,14 +344,14 @@ Parsed CXX implicit link information from above output:
 Detecting CXX [-std=c++1z] compiler features compiled with the following output:
 Change Dir: /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_a26df/fast"
-/usr/bin/make -f CMakeFiles/cmTC_a26df.dir/build.make CMakeFiles/cmTC_a26df.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_4f37a/fast"
+/usr/bin/make -f CMakeFiles/cmTC_4f37a.dir/build.make CMakeFiles/cmTC_4f37a.dir/build
 make[1]: Entering directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_a26df.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_a26df.dir/feature_tests.cxx.o -c /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_a26df
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a26df.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_a26df.dir/feature_tests.cxx.o  -o cmTC_a26df 
+Building CXX object CMakeFiles/cmTC_4f37a.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_4f37a.dir/feature_tests.cxx.o -c /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_4f37a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4f37a.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_4f37a.dir/feature_tests.cxx.o  -o cmTC_4f37a 
 make[1]: Leaving directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp'
 
 
@@ -417,14 +417,14 @@ make[1]: Leaving directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMa
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
 Change Dir: /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_6f26c/fast"
-/usr/bin/make -f CMakeFiles/cmTC_6f26c.dir/build.make CMakeFiles/cmTC_6f26c.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_2535c/fast"
+/usr/bin/make -f CMakeFiles/cmTC_2535c.dir/build.make CMakeFiles/cmTC_2535c.dir/build
 make[1]: Entering directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_6f26c.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_6f26c.dir/feature_tests.cxx.o -c /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_6f26c
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6f26c.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_6f26c.dir/feature_tests.cxx.o  -o cmTC_6f26c 
+Building CXX object CMakeFiles/cmTC_2535c.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_2535c.dir/feature_tests.cxx.o -c /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_2535c
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2535c.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_2535c.dir/feature_tests.cxx.o  -o cmTC_2535c 
 make[1]: Leaving directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp'
 
 
@@ -490,14 +490,14 @@ make[1]: Leaving directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMa
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
 Change Dir: /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_f86a4/fast"
-/usr/bin/make -f CMakeFiles/cmTC_f86a4.dir/build.make CMakeFiles/cmTC_f86a4.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_21d21/fast"
+/usr/bin/make -f CMakeFiles/cmTC_21d21.dir/build.make CMakeFiles/cmTC_21d21.dir/build
 make[1]: Entering directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_f86a4.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_f86a4.dir/feature_tests.cxx.o -c /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_f86a4
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f86a4.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_f86a4.dir/feature_tests.cxx.o  -o cmTC_f86a4 
+Building CXX object CMakeFiles/cmTC_21d21.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_21d21.dir/feature_tests.cxx.o -c /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_21d21
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_21d21.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_21d21.dir/feature_tests.cxx.o  -o cmTC_21d21 
 make[1]: Leaving directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp'
 
 
@@ -563,14 +563,14 @@ make[1]: Leaving directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMa
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
 Change Dir: /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_c5778/fast"
-/usr/bin/make -f CMakeFiles/cmTC_c5778.dir/build.make CMakeFiles/cmTC_c5778.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_6abf0/fast"
+/usr/bin/make -f CMakeFiles/cmTC_6abf0.dir/build.make CMakeFiles/cmTC_6abf0.dir/build
 make[1]: Entering directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_c5778.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_c5778.dir/feature_tests.cxx.o -c /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_c5778
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c5778.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_c5778.dir/feature_tests.cxx.o  -o cmTC_c5778 
+Building CXX object CMakeFiles/cmTC_6abf0.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_6abf0.dir/feature_tests.cxx.o -c /home/usrc/Kiswire/RS485_Master/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_6abf0
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6abf0.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_6abf0.dir/feature_tests.cxx.o  -o cmTC_6abf0 
 make[1]: Leaving directory '/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/CMakeTmp'
 
 

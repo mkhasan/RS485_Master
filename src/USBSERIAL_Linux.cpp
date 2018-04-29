@@ -25,7 +25,12 @@
 #include <assert.h>
 
 
+extern char key;
+extern int addr;
+
 bool quit = false;
+
+
 
 static	long baud_table[] =
 {
@@ -35,13 +40,15 @@ static	long baud_table[] =
 
 static unsigned long LastErrorGlobal;	//Errorcode, nur (noch) fuer GSV4actExt
 
-static sensorRecord sensor;
+sensorRecord sensor;
 
 static tcflag_t BaudrateToBaudrateCode( unsigned long baudrate );
 
 //static int ConditionTimeout(pthread_cond_t *pCondition, pthread_mutex_t *pMutex, int * pEvent, unsigned long timoutUs);
 
 static double CalcData(const unsigned long val);
+static void set_blocking (int fd, int should_block);
+static int set_interface_attribs (int fd, int speed, int parity);
 
 sensorRecord::sensorRecord()
 {
@@ -60,14 +67,27 @@ void * USB2SERIAL_LINUX(void *ptr) {
 
 	char * dev = (char *) ptr;
 
-	SensorActivate(dev, 9600, 256, 0);
+	int ret = SensorActivate(dev, 9600, 256, 0);
+
+	if(ret != SENSOR_OK)
+		KWSA_DEBUG("USB2SERIAL_LINUX: ret is %d Global error is %d \n", ret, LastErrorGlobal);
 	while (quit == false) {
-		SensorGetValue();
+
+		switch(key) {
+			case 'x':
+				SensorGetValue();
+				key = '0';
+				break;
+			case 'q':
+				quit = true;
+				break;
+		}
+
 		usleep(1000000);
 	}
 
 	SensorRelease();
-	return 0;
+	return NULL;
 }
 
 
@@ -335,13 +355,19 @@ int SensorActivate(const char * dev, long Bitrate, long BufSize, long flags) {
 	}
 	tmpGSV->Param_in_missing = 0;	//wichtig (eig. red. wg calloc)
 
-	tmpGSV->fd= open(dev, O_RDWR);
+	tmpGSV->fd= open (dev, O_RDWR | O_NOCTTY | O_SYNC);//open(dev, O_RDWR);
+
 
 	if(tmpGSV->fd < 0)
 	{
 		LastErrorGlobal= INVALID_FILE_FD;
 		ABORT_ACTIVATE;
 	}
+
+	set_interface_attribs (tmpGSV->fd, B9600, 0);  // set speed to 115,200 bps, 8n1 (no parity)
+	set_blocking (tmpGSV->fd, 1);                // set no blocking
+
+	/*
 
 	if (tcgetattr( tmpGSV->fd, &io_set_old ) < 0)
 	{
@@ -389,6 +415,7 @@ int SensorActivate(const char * dev, long Bitrate, long BufSize, long flags) {
 		ABORT_ACTIVATE;
 	}
 
+	*/
 	tmpGSV->terminate = false;
    	tmpGSV->clear = false;
 
@@ -492,6 +519,31 @@ int SensorActivate(const char * dev, long Bitrate, long BufSize, long flags) {
 }
 
 int SensorGetValue() {
+
+	char txbuf[256];
+	DWORD Byteswritten;
+	int res = SENSOR_OK;
+
+	CHECK_OWNER;
+	memset(txbuf, 0, sizeof(txbuf));
+
+	sprintf(txbuf, "%cGET VALUE %03d%c", STX, addr, ETX);
+
+
+
+	//WRITE_BYTES_CHK_SUCC(16);
+
+	int len = strlen(txbuf);
+
+	if((Byteswritten=write(sensor.fd, txbuf, (len)))!= (len))
+	{
+		sensor.LastError= TTY_WRITE_ERROR;
+		res= SENSOR_ERROR;
+	}
+
+
+
+	return res;
 
 }
 
@@ -604,7 +656,7 @@ int SensorGetTxMode() {
 	return SENSOR_OK;
 }
 
-int SensorRead(int ComNo, unsigned int *id, double* out1, double* out2)
+int SensorRead(unsigned int *id, double* out1, double* out2)
 {
 	int result = SENSOR_TRUE, ix; //,err;
 
@@ -679,7 +731,7 @@ int SensorRelease()
 		pthread_join(sensor.thread, &status);
 
 
-	 }
+	}
 
 	sensor.thread = 0;
 		 	/* Thread endgültig schließen */
@@ -717,4 +769,64 @@ double CalcData(const unsigned long val) {
 	double ret =  ((double)val*0.0382 + 3.6165);
 
 	return ret;
+}
+
+
+int
+set_interface_attribs (int fd, int speed, int parity)
+{
+        struct termios tty;
+        memset (&tty, 0, sizeof tty);
+        if (tcgetattr (fd, &tty) != 0)
+        {
+        	KWSA_ERROR ("error %d from tcgetattr", errno);
+            return -1;
+        }
+
+        cfsetospeed (&tty, speed);
+        cfsetispeed (&tty, speed);
+
+        tty.c_cflag = (tty.c_cflag & ~CSIZE) | CS8;     // 8-bit chars
+        // disable IGNBRK for mismatched speed tests; otherwise receive break
+        // as \000 chars
+        tty.c_iflag &= ~IGNBRK;         // disable break processing
+        tty.c_lflag = 0;                // no signaling chars, no echo,
+                                        // no canonical processing
+        tty.c_oflag = 0;                // no remapping, no delays
+        tty.c_cc[VMIN]  = 0;            // read doesn't block
+        tty.c_cc[VTIME] = 5;            // 0.5 seconds read timeout
+
+        tty.c_iflag &= ~(IXON | IXOFF | IXANY); // shut off xon/xoff ctrl
+
+        tty.c_cflag |= (CLOCAL | CREAD);// ignore modem controls,
+                                        // enable reading
+        tty.c_cflag &= ~(PARENB | PARODD);      // shut off parity
+        tty.c_cflag |= parity;
+        tty.c_cflag &= ~CSTOPB;
+        tty.c_cflag &= ~CRTSCTS;
+
+        if (tcsetattr (fd, TCSANOW, &tty) != 0)
+        {
+        	KWSA_ERROR ("error %d from tcsetattr", errno);
+                return -1;
+        }
+        return 0;
+}
+
+void
+set_blocking (int fd, int should_block)
+{
+        struct termios tty;
+        memset (&tty, 0, sizeof tty);
+        if (tcgetattr (fd, &tty) != 0)
+        {
+                KWSA_ERROR ("error %d from tggetattr", errno);
+                return;
+        }
+
+        tty.c_cc[VMIN]  = should_block ? 1 : 0;
+        tty.c_cc[VTIME] = 5;            // 0.5 seconds read timeout
+
+        if (tcsetattr (fd, TCSANOW, &tty) != 0)
+        	KWSA_ERROR ("error %d setting term attributes", errno);
 }

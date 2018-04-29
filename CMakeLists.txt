@@ -15,6 +15,8 @@ link_directories (${ACE_DIR}/lib)
 
 #message ("link dir: ${ACE_DIR}/lib")
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ggdb -Wall -fpermissive -Wno-narrowing")
+
 add_executable(${TARGET} ${SRC})
 
 target_link_libraries(${TARGET} ACE pthread)
