@@ -5,11 +5,13 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/usrc/Kiswire/RS485_Master/src/RS485_Master.cpp" "/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/RS485_Master.dir/src/RS485_Master.cpp.o"
+  "/home/usrc/Kiswire/RS485_Master/src/USBSERIAL_Linux.cpp" "/home/usrc/Kiswire/RS485_Master/build/CMakeFiles/RS485_Master.dir/src/USBSERIAL_Linux.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "/home/usrc/ACE_wrappers"
   )
 
 # Targets to which this target links.

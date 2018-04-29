@@ -1,1 +1,1 @@
-/usr/bin/c++    -rdynamic CMakeFiles/RS485_Master.dir/src/RS485_Master.cpp.o  -o ../bin/RS485_Master 
+/usr/bin/c++    -rdynamic CMakeFiles/RS485_Master.dir/src/RS485_Master.cpp.o CMakeFiles/RS485_Master.dir/src/USBSERIAL_Linux.cpp.o  -o ../bin/RS485_Master  -L/home/usrc/ACE_wrappers/lib -Wl,-rpath,/home/usrc/ACE_wrappers/lib -lACE -lpthread 

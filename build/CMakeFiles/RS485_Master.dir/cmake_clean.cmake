@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/RS485_Master.dir/src/RS485_Master.cpp.o"
+  "CMakeFiles/RS485_Master.dir/src/USBSERIAL_Linux.cpp.o"
   "../bin/RS485_Master.pdb"
   "../bin/RS485_Master"
 )

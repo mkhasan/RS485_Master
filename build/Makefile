@@ -150,6 +150,33 @@ src/RS485_Master.cpp.s:
 	$(MAKE) -f CMakeFiles/RS485_Master.dir/build.make CMakeFiles/RS485_Master.dir/src/RS485_Master.cpp.s
 .PHONY : src/RS485_Master.cpp.s
 
+src/USBSERIAL_Linux.o: src/USBSERIAL_Linux.cpp.o
+
+.PHONY : src/USBSERIAL_Linux.o
+
+# target to build an object file
+src/USBSERIAL_Linux.cpp.o:
+	$(MAKE) -f CMakeFiles/RS485_Master.dir/build.make CMakeFiles/RS485_Master.dir/src/USBSERIAL_Linux.cpp.o
+.PHONY : src/USBSERIAL_Linux.cpp.o
+
+src/USBSERIAL_Linux.i: src/USBSERIAL_Linux.cpp.i
+
+.PHONY : src/USBSERIAL_Linux.i
+
+# target to preprocess a source file
+src/USBSERIAL_Linux.cpp.i:
+	$(MAKE) -f CMakeFiles/RS485_Master.dir/build.make CMakeFiles/RS485_Master.dir/src/USBSERIAL_Linux.cpp.i
+.PHONY : src/USBSERIAL_Linux.cpp.i
+
+src/USBSERIAL_Linux.s: src/USBSERIAL_Linux.cpp.s
+
+.PHONY : src/USBSERIAL_Linux.s
+
+# target to generate assembly for a file
+src/USBSERIAL_Linux.cpp.s:
+	$(MAKE) -f CMakeFiles/RS485_Master.dir/build.make CMakeFiles/RS485_Master.dir/src/USBSERIAL_Linux.cpp.s
+.PHONY : src/USBSERIAL_Linux.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,6 +189,9 @@ help:
 	@echo "... src/RS485_Master.o"
 	@echo "... src/RS485_Master.i"
 	@echo "... src/RS485_Master.s"
+	@echo "... src/USBSERIAL_Linux.o"
+	@echo "... src/USBSERIAL_Linux.i"
+	@echo "... src/USBSERIAL_Linux.s"
 .PHONY : help
 
 
