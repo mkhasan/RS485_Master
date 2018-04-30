@@ -44,7 +44,7 @@
 #define ERR_EVENTFAILED 0x300000F1	//d805306609
 #define ERR_PAR_NO 0x300000F2		//d805306610
 #define ERR_MEM_ALLOC	0x300000F3	//d805306611 eventuell zuwenig RAM
-#define ERR_NO_GSV4_FOUND 0x300000F4	//d805306612 Comport konnte zwar geoeffnet werden, aber kein GSV4 antwortete
+#define ERR_NO_SENSOR_FOUND 0x300000F4	//d805306612 Comport konnte zwar geoeffnet werden, aber kein GSV4 antwortete
 #define ERR_BYTES_WRITTEN 0x300000F5	//d805306613
 #define ERR_WRONG_PARAMETER 0x30000100	//d805306624
 #define ERR_NO_ANSWER 0x30000058	//d805306456

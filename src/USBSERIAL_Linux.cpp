@@ -28,7 +28,7 @@
 extern char key;
 extern int addr;
 
-bool quit = false;
+extern bool quit;
 
 
 
@@ -57,7 +57,7 @@ sensorRecord::sensorRecord()
 	KWSA_ASSERT(pthread_mutex_init(&Prd_mutex, NULL) == 0);
 	KWSA_ASSERT(pthread_cond_init(&Prd_cond, NULL) == 0);
 	KWSA_ASSERT(pthread_cond_init(&Clr_cond, NULL) == 0);
-	fd = 0;
+	fd = -1;
 	ownPtr = NULL;
 
 }
@@ -73,20 +73,14 @@ void * USB2SERIAL_LINUX(void *ptr) {
 		KWSA_DEBUG("USB2SERIAL_LINUX: ret is %d Global error is %d \n", ret, LastErrorGlobal);
 	while (quit == false) {
 
-		switch(key) {
-			case 'x':
-				SensorGetValue();
-				key = '0';
-				break;
-			case 'q':
-				quit = true;
-				break;
-		}
+		SensorGetValue();
+
 
 		usleep(1000000);
 	}
 
-	SensorRelease();
+	ret = SensorRelease();
+	KWSA_DEBUG("Release with ret %d \n", ret);
 	return NULL;
 }
 
@@ -112,9 +106,18 @@ void * data_pump(void *ptr) //war static void
 				tmp->in_missing, &tmp->in_count, NULL); //&tmp->action_read);
 				*/
 
+
+
 		tmp->in_count = read(tmp->fd, tmp->in_buffer + tmp->in_pos,
 							 tmp->in_missing); //&tmp->action_read);
 
+		/*
+		for (int i=0; i<tmp->in_count; i++) {
+			KWSA_DEBUG("%x ", *(tmp->in_buffer + tmp->in_pos+i));
+
+		}
+		KWSA_DEBUG("\n");
+		*/
 
 
 		if(!tmp->in_count)	{//wenn nix gelesen: -> if not read:
@@ -213,6 +216,7 @@ void move_data(sensorRecord *tmp)
 
 			p++;
 
+			//KWSA_DEBUG("REQ val is %x \n", *p);
 			memcpy((void *)&t.id, p, sizeof(unsigned int));
 			p += sizeof(unsigned int);
 			memset((void *)&t.value1, 0, sizeof(t.value1));
@@ -294,7 +298,7 @@ int SensorActivate(const char * dev, long Bitrate, long BufSize, long flags) {
 
 	unsigned int wtime;
 
-	sensorRecord *tmpGSV = NULL;
+	sensorRecord *tmp = NULL;
 							/* Grunds�tzliche Zul�ssigkeit */
 	/* Datenpuffer: Gr��e �berpr�fen und anlegen */
 	max_s = (int)(((DWORD)-1) / FRAME_SIZE);
@@ -320,56 +324,60 @@ int SensorActivate(const char * dev, long Bitrate, long BufSize, long flags) {
 		return SENSOR_ERROR;
 	}
 
-	if (sensor.fd != 0 || sensor.ownPtr != NULL)
+	if (sensor.fd != -1 || sensor.ownPtr != NULL)
 	{
 		LastErrorGlobal = ERR_COM_ALREADY_OPEN;
 		return SENSOR_ERROR; 	//Schnittstelle bereits geoeffnet
 	}
 
-	tmpGSV = &sensor;
+	tmp = &sensor;
 
-	tmpGSV->in_buffer = (unsigned char *)malloc(IN_OWNBUFSIZE);
+	tmp->in_buffer = (unsigned char *)malloc(IN_OWNBUFSIZE);
 
-	if (tmpGSV->in_buffer == NULL)
+	if (tmp->in_buffer == NULL)
 	{
 		LastErrorGlobal = ERR_MEM_ALLOC;
 		ABORT_ACTIVATE;
 	}
-	//tmpGSV->in_missing = 0;
-	tmpGSV->out_size = bufsizetmp; // * sizeof(long);
+	//tmp->in_missing = 0;
+	tmp->out_size = bufsizetmp; // * sizeof(long);
 
-	tmpGSV->out_buffer = (sensordata*)malloc(tmpGSV->out_size * sizeof(sensordata));
+	tmp->out_buffer = (sensordata*)malloc(tmp->out_size * sizeof(sensordata));
 
-	if (!tmpGSV->out_buffer)
+	if (!tmp->out_buffer)
 	{
 		LastErrorGlobal = ERR_MEM_ALLOC;
 		ABORT_ACTIVATE;
 	}
-		//tmpGSV->out_put[i]=0; tmpGSV->out_get[i]=0;
+		//tmp->out_put[i]=0; tmp->out_get[i]=0;
 
-	tmpGSV->Param_in_buf = (unsigned char*)malloc(PARAM_INBUF_SIZE);	//buffer fuer Read-Parameter
-	if (!tmpGSV->Param_in_buf)
+	tmp->Param_in_buf = (unsigned char*)malloc(PARAM_INBUF_SIZE);	//buffer fuer Read-Parameter
+	if (!tmp->Param_in_buf)
 	{
 		LastErrorGlobal = ERR_MEM_ALLOC;
 		ABORT_ACTIVATE;
 	}
-	tmpGSV->Param_in_missing = 0;	//wichtig (eig. red. wg calloc)
+	tmp->Param_in_missing = 0;	//wichtig (eig. red. wg calloc)
 
-	tmpGSV->fd= open (dev, O_RDWR | O_NOCTTY | O_SYNC);//open(dev, O_RDWR);
+	tmp->fd= open(dev, O_RDWR | O_NOCTTY | O_SYNC);
 
 
-	if(tmpGSV->fd < 0)
+	if(tmp->fd < 0)
 	{
 		LastErrorGlobal= INVALID_FILE_FD;
 		ABORT_ACTIVATE;
 	}
 
-	set_interface_attribs (tmpGSV->fd, B9600, 0);  // set speed to 115,200 bps, 8n1 (no parity)
-	set_blocking (tmpGSV->fd, 1);                // set no blocking
+
+	KWSA_DEBUG("tmp->fd is %d \n", tmp->fd);
+
+	KWSA_ASSERT(BaudrateToBaudrateCode( Bitrate ));
+	set_interface_attribs (tmp->fd, BaudrateToBaudrateCode( Bitrate ), 0);  // set speed to 115,200 bps, 8n1 (no parity)
+	set_blocking (tmp->fd, 1);                // set no blocking
 
 	/*
 
-	if (tcgetattr( tmpGSV->fd, &io_set_old ) < 0)
+	if (tcgetattr( tmp->fd, &io_set_old ) < 0)
 	{
 		LastErrorGlobal = GET_COM_ATTR_ERROR;
 		ABORT_ACTIVATE;
@@ -409,24 +417,24 @@ int SensorActivate(const char * dev, long Bitrate, long BufSize, long flags) {
 	io_set_new.c_cflag |= CS8;
 
 
-	if (tcsetattr(tmpGSV->fd,TCSANOW,&io_set_new) < 0)
+	if (tcsetattr(tmp->fd,TCSANOW,&io_set_new) < 0)
 	{
 		LastErrorGlobal = SET_COM_ATTR_ERROR;
 		ABORT_ACTIVATE;
 	}
 
 	*/
-	tmpGSV->terminate = false;
-   	tmpGSV->clear = false;
+	tmp->terminate = false;
+   	tmp->clear = false;
 
-   	if (pthread_create(&tmpGSV->thread, NULL, data_pump, (sensorRecord*)&sensor) != 0) {
+   	if (pthread_create(&tmp->thread, NULL, data_pump, (sensorRecord*)&sensor) != 0) {
 
    		LastErrorGlobal = THREAD_CREATE_ERROR;
    		ABORT_ACTIVATE;
    	}
 	/*thread-init war _beginthread(gsv_data_pump, STACK_SIZE, &gsvs[ComNo])*/
 
-   	tmpGSV->Bitrate = Bitrate;
+   	tmp->Bitrate = Bitrate;
 
    	sensor.ownPtr= &sensor;
 
@@ -535,11 +543,14 @@ int SensorGetValue() {
 
 	int len = strlen(txbuf);
 
+
 	if((Byteswritten=write(sensor.fd, txbuf, (len)))!= (len))
 	{
 		sensor.LastError= TTY_WRITE_ERROR;
 		res= SENSOR_ERROR;
 	}
+
+
 
 
 
@@ -674,13 +685,16 @@ int SensorRead(unsigned int *id, double* out1, double* out2)
 			result = SENSOR_OK;			//nein: result=0
 		if (result && !tmp->error)
 		{
+
+
 			*id = tmp->out_buffer[tmp->out_get].id;
 			*out1 = CalcData(tmp->out_buffer[tmp->out_get].value1);
 			*out2 = CalcData(tmp->out_buffer[tmp->out_get].value2);
 			tmp->out_get = (tmp->out_get + 1) % tmp->out_size;
 			tmp->out_count--;
-			KWSA_DEBUG("%d \n", tmp->out_count);
+			//KWSA_DEBUG("%d \n", tmp->out_count);
 		}
+
 		pthread_mutex_unlock(&tmp->io_mutex);
 	}
 	else
@@ -713,13 +727,14 @@ int SensorRelease()
 	void *status;
 
 
-	if (sensor.thread != 0 )	{
+	if (sensor.thread > -1 )	{
 		sensor.clear = true;   /* Auch Buffer-Clear setzen zur Vereinfachung */
 
-		if (sensor.fd)  { /* Einlesevorgänge abbrechen */
-			tcflush(sensor.fd, TCOFLUSH);
+		if (sensor.fd > -1)  { /* Einlesevorgänge abbrechen */
+			sleep(2);
+			tcflush(sensor.fd, TCIOFLUSH);
 			close(sensor.fd);
-			sensor.fd = 0;
+			sensor.fd = -1;
 		}
 
 	/* MUTEXs freigeben, da Arrayeinträge bereits leer sind, */
@@ -759,13 +774,15 @@ int SensorRelease()
 
 	sensor.ownPtr= NULL;
 
+
+
 	return SENSOR_OK;
 
 }
 
 double CalcData(const unsigned long val) {
 
-	printf("value is %ld \n", val);
+	//printf("value is %ld \n", val);
 	double ret =  ((double)val*0.0382 + 3.6165);
 
 	return ret;
@@ -804,6 +821,9 @@ set_interface_attribs (int fd, int speed, int parity)
         tty.c_cflag |= parity;
         tty.c_cflag &= ~CSTOPB;
         tty.c_cflag &= ~CRTSCTS;
+        tty.c_cflag &= ~(INLCR | IGNCR | ICRNL);	// Ignore carriage return on input
+        //tty.c_cflag |= ICRNL;
+        tty.c_iflag &= ~(IGNBRK | BRKINT | PARMRK | ISTRIP | INLCR | IGNCR | ICRNL | IXON);
 
         if (tcsetattr (fd, TCSANOW, &tty) != 0)
         {
@@ -827,6 +847,7 @@ set_blocking (int fd, int should_block)
         tty.c_cc[VMIN]  = should_block ? 1 : 0;
         tty.c_cc[VTIME] = 5;            // 0.5 seconds read timeout
 
+        //tty.c_cflag &= ~(INLCR | IGNCR | ICRNL);	// Ignore carriage return on input
         if (tcsetattr (fd, TCSANOW, &tty) != 0)
         	KWSA_ERROR ("error %d setting term attributes", errno);
 }

@@ -3,18 +3,36 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <iostream>
+#include <signal.h>
 
 using namespace std;
 
 extern sensorRecord sensor;
 
-char key = '0';
+bool quit = false;
 int addr = 5;
 
+#define ALARM_INTERVAL_IN_S     (1)
 
 
+static void sighand(int sig)
+{
+  static unsigned int last;
+
+  switch (sig) {
+  case SIGINT:
+	  cout << "SIN INT" << endl;
+	  quit = true;
+	  break;
+  case SIGALRM:
+	  cout << "SIN ALARM" << endl;
+	  alarm(ALARM_INTERVAL_IN_S);
+	  break;
+  }
+}
 int main(int argc, char *argv[]) {
 //	printf("hello hasan \n");
+
 
 	char dev[256] = "/dev/ttyUSB0";
 
@@ -24,6 +42,16 @@ int main(int argc, char *argv[]) {
 	if(argc > 1)
 		strcpy(dev, argv[1]);
 
+
+	/* Use sighand as our signal handler */
+	//signal(SIGALRM, sighand);
+	signal(SIGINT, sighand);
+	//alarm(ALARM_INTERVAL_IN_S);
+
+	/* Allow signals to interrupt syscalls */
+	siginterrupt(SIGINT, 1);
+
+
 	pthread_t handle;
    	if (pthread_create(&handle, NULL, USB2SERIAL_LINUX, (char*)dev) != 0) {
 
@@ -32,20 +60,27 @@ int main(int argc, char *argv[]) {
    	}
 
 
-   	while(key != 'q') {
+   	static unsigned int expected = 0;
 
-   		printf("Enter a key : ");
-   		cin >> key;
+   	while(quit == false) {
 
-   		if(key == 's' && sensor.ownPtr != NULL) {
-   			if(SensorRead(&id, &val1, &val2) == SENSOR_TRUE)
-   				KWSA_DEBUG("(%d   %.2f   %.2f \n)", id, val1, val2);
-   		}
+		if(SensorRead(&id, &val1, &val2) == SENSOR_TRUE)
+			KWSA_INFO("(%4d   %.2f   %.2f ) \n", id, val1, val2);
+		else
+			KWSA_DEBUG("No data \n");
+
+		if(id != expected)
+			;//KWSA_ERROR("!!!!!!!!!!!!!!!!  Failed to get Expected IP !!!!!!!!!!!!!!!!!!1 \n");
+		expected = id + 1;
+
+   		sleep(1);
 
    	}
 
    	void *status;
    	pthread_join(handle, &status);
+
+   	KWSA_DEBUG("Exiting... \n");
 
    	return 0;
 }

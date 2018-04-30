@@ -671,6 +671,8 @@ pthread.h
 -
 iostream
 -
+signal.h
+-
 
 /home/usrc/Kiswire/RS485_Master/src/USBSERIAL_Linux.cpp
 USBSERIAL_Linux.h
