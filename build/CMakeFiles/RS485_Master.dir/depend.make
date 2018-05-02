@@ -106,6 +106,7 @@ CMakeFiles/RS485_Master.dir/src/RS485_Master.cpp.o: /home/usrc/ACE_wrappers/ace/
 CMakeFiles/RS485_Master.dir/src/RS485_Master.cpp.o: /home/usrc/ACE_wrappers/ace/streams.h
 CMakeFiles/RS485_Master.dir/src/RS485_Master.cpp.o: ../src/RS485_Master.cpp
 CMakeFiles/RS485_Master.dir/src/RS485_Master.cpp.o: ../src/USBSERIAL_Linux.h
+CMakeFiles/RS485_Master.dir/src/RS485_Master.cpp.o: /home/usrc/MyLib/src/util.h
 
 CMakeFiles/RS485_Master.dir/src/USBSERIAL_Linux.cpp.o: /home/usrc/ACE_wrappers/ace/ACE_export.h
 CMakeFiles/RS485_Master.dir/src/USBSERIAL_Linux.cpp.o: /home/usrc/ACE_wrappers/ace/Argv_Type_Converter.h

@@ -369,7 +369,7 @@ int SensorActivate(const char * dev, long Bitrate, long BufSize, long flags) {
 	}
 
 
-	KWSA_DEBUG("tmp->fd is %d \n", tmp->fd);
+	KWSA_DEBUG("done \n");
 
 	KWSA_ASSERT(BaudrateToBaudrateCode( Bitrate ));
 	set_interface_attribs (tmp->fd, BaudrateToBaudrateCode( Bitrate ), 0);  // set speed to 115,200 bps, 8n1 (no parity)

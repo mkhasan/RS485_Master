@@ -6,5 +6,5 @@ CXX_FLAGS =  -ggdb -Wall -fpermissive -Wno-narrowing
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/usrc/ACE_wrappers 
+CXX_INCLUDES = -I/home/usrc/ACE_wrappers -I/home/usrc/MyLib/src 
 
