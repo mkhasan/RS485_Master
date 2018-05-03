@@ -16,7 +16,7 @@ using namespace std;
 extern sensorRecord sensor;
 
 bool quit = false;
-int addr = 5;
+uint8_t addr = 5;
 
 #define ALARM_INTERVAL_IN_S     (1)
 

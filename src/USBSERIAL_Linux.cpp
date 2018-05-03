@@ -8,6 +8,8 @@
 
 #include "USBSERIAL_Linux.h"
 
+#include "util.h"
+
 #include <string.h>
 #include <errno.h>
 #include <pthread.h>
@@ -26,7 +28,7 @@
 
 
 extern char key;
-extern int addr;
+extern uint8_t addr;
 
 extern bool quit;
 
@@ -49,6 +51,7 @@ static tcflag_t BaudrateToBaudrateCode( unsigned long baudrate );
 static double CalcData(const unsigned long val);
 static void set_blocking (int fd, int should_block);
 static int set_interface_attribs (int fd, int speed, int parity);
+static int ComputeMsg(uint8_t *p);
 
 sensorRecord::sensorRecord()
 {
@@ -528,20 +531,20 @@ int SensorActivate(const char * dev, long Bitrate, long BufSize, long flags) {
 
 int SensorGetValue() {
 
-	char txbuf[256];
+	uint8_t txbuf[256];
 	DWORD Byteswritten;
 	int res = SENSOR_OK;
 
 	CHECK_OWNER;
 	memset(txbuf, 0, sizeof(txbuf));
 
-	sprintf(txbuf, "%cGET VALUE %03d%c", STX, addr, ETX);
+	sprintf((char*)txbuf, "%cGET VALUE %03d%c", STX, (int)addr, ETX);
 
 
 
 	//WRITE_BYTES_CHK_SUCC(16);
 
-	int len = strlen(txbuf);
+	int len = strlen((char *)txbuf);
 
 
 	if((Byteswritten=write(sensor.fd, txbuf, (len)))!= (len))
@@ -850,4 +853,34 @@ set_blocking (int fd, int should_block)
         //tty.c_cflag &= ~(INLCR | IGNCR | ICRNL);	// Ignore carriage return on input
         if (tcsetattr (fd, TCSANOW, &tty) != 0)
         	KWSA_ERROR ("error %d setting term attributes", errno);
+}
+
+static int ComputeMsg(uint8_t *buf) {
+	//sprintf((char*)txbuf, "%cGET VALUE %03d%c", STX, addr, ETX);
+
+	uint32_t msg = addr;
+	uint32_t polynom = 0b11001;
+	uint8_t crc = MY_LIB::crcCalc(msg, 8, polynom);
+
+	KWSA_ASSERT(crc < 0x10);
+
+	//sprintf((char*)txbuf, "%cGET VALUE %c%c%c%c", STX, addr, ETX);
+
+	uint8_t * p = buf;
+	*p++ = STX;
+	char str[256] = "GET VALUE ";
+	for(int i=0; i<strlen(str); i++)
+		*p++ = str[i];
+
+	*p++ = addr;
+	*p++ = crc;
+	*p++ = '0';
+	*p++ = ETX;
+
+	int len = p-buf;
+	KWSA_ASSERT(len == 15);
+
+	return len;
+
+
 }

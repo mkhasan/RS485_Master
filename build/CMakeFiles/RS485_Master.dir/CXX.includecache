@@ -679,6 +679,8 @@ signal.h
 /home/usrc/Kiswire/RS485_Master/src/USBSERIAL_Linux.cpp
 USBSERIAL_Linux.h
 /home/usrc/Kiswire/RS485_Master/src/USBSERIAL_Linux.h
+util.h
+/home/usrc/Kiswire/RS485_Master/src/util.h
 string.h
 -
 errno.h

@@ -213,4 +213,5 @@ CMakeFiles/RS485_Master.dir/src/USBSERIAL_Linux.cpp.o: /home/usrc/ACE_wrappers/a
 CMakeFiles/RS485_Master.dir/src/USBSERIAL_Linux.cpp.o: /home/usrc/ACE_wrappers/ace/streams.h
 CMakeFiles/RS485_Master.dir/src/USBSERIAL_Linux.cpp.o: ../src/USBSERIAL_Linux.cpp
 CMakeFiles/RS485_Master.dir/src/USBSERIAL_Linux.cpp.o: ../src/USBSERIAL_Linux.h
+CMakeFiles/RS485_Master.dir/src/USBSERIAL_Linux.cpp.o: /home/usrc/MyLib/src/util.h
 
