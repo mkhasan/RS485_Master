@@ -544,7 +544,7 @@ int SensorGetValue() {
 
 	//WRITE_BYTES_CHK_SUCC(16);
 
-	int len = strlen((char *)txbuf);
+	int len = ComputeMsg(txbuf);//strlen((char *)txbuf);
 
 
 	if((Byteswritten=write(sensor.fd, txbuf, (len)))!= (len))
@@ -670,7 +670,7 @@ int SensorGetTxMode() {
 	return SENSOR_OK;
 }
 
-int SensorRead(unsigned int *id, double* out1, double* out2)
+int SensorRead(unsigned int* count, unsigned int* addr,  double* out1, double* out2)
 {
 	int result = SENSOR_TRUE, ix; //,err;
 
@@ -678,7 +678,8 @@ int SensorRead(unsigned int *id, double* out1, double* out2)
 
 	sensorRecord *tmp = (sensorRecord *)sensor.ownPtr; //(gsvrecord *) redundant?
 
-
+	unsigned int id;
+	unsigned char * p;
 
 
 	if (pthread_mutex_lock(&tmp->io_mutex) == 0) //if(EnterGSVreadMutex(ComNo))
@@ -690,11 +691,15 @@ int SensorRead(unsigned int *id, double* out1, double* out2)
 		{
 
 
-			*id = tmp->out_buffer[tmp->out_get].id;
+			id = tmp->out_buffer[tmp->out_get].id;
 			*out1 = CalcData(tmp->out_buffer[tmp->out_get].value1);
 			*out2 = CalcData(tmp->out_buffer[tmp->out_get].value2);
 			tmp->out_get = (tmp->out_get + 1) % tmp->out_size;
 			tmp->out_count--;
+
+			p = (unsigned char *)&id;
+			*addr = (unsigned int) p[3];
+			*count = id & 0x0FFF;
 			//KWSA_DEBUG("%d \n", tmp->out_count);
 		}
 

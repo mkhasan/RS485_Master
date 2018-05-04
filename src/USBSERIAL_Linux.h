@@ -211,7 +211,7 @@ int SensorGetMode();
 int SensorGetTxMode();
 double CalcData(const unsigned int val);
 int SensorGetValue();
-int SensorRead(unsigned int * id, double* val1, double* val2);
+int SensorRead(unsigned int * count, unsigned int * addr, double* val1, double* val2);
 
 int SensorActivate(const char * dev, long Bitrate, long BufSize, long flags);
 int SensorRelease();

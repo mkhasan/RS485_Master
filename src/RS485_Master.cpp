@@ -18,6 +18,11 @@ extern sensorRecord sensor;
 bool quit = false;
 uint8_t addr = 5;
 
+#define MAX_NO_OF_NODES 20
+
+uint8_t nodeList[MAX_NO_OF_NODES] = {addr };
+int nNodes = 1;
+
 #define ALARM_INTERVAL_IN_S     (1)
 
 
@@ -43,12 +48,42 @@ int main(int argc, char *argv[]) {
 
 	char dev[256] = "/dev/ttyUSB";
 
-	double val1, val2;
-	unsigned int id;
+	bool devArgFound = false;
 
-	if(argc > DEVICE_INDEX)
-		strcpy(dev, argv[DEVICE_INDEX]);
-	else {
+	double val1, val2;
+	unsigned int count, sender;
+
+	int argIndex = 1;
+	uint8_t curAddr;
+	int i;
+	while(argIndex < argc) {
+
+		if(argv[argIndex][0] >= '0' && argv[argIndex][0] <= '9') {
+			if(argIndex == 1) {
+				nNodes = 0;
+			}
+			curAddr = atoi(argv[argIndex]);
+			for(i=0; i<nNodes; i++) {
+				if(curAddr == nodeList[i]) {
+					printf("Addr format error !!! \n");
+					exit(1);
+				}
+			}
+
+			nodeList[nNodes] = curAddr;
+			nNodes ++;
+
+		}
+		else {
+			strcpy(dev, argv[argIndex]);
+			devArgFound = true;
+			break;
+		}
+		argIndex ++;
+
+	}
+
+	if(devArgFound == false) {
 		int deviceNo = MY_LIB::GetFirstDeviceNo(dev, 0, 20);
 		if(deviceNo == -1)
 			deviceNo = 0;
@@ -58,6 +93,14 @@ int main(int argc, char *argv[]) {
 
 	}
 
+	for (i=0; i<nNodes; i++)
+		printf("%d ", nodeList[i]);
+
+	printf("\n");
+
+	printf("%s \n", dev);
+
+	//exit(0);
 	KWSA_DEBUG("Connecting to device %s ... ", dev);
 
 
@@ -82,15 +125,15 @@ int main(int argc, char *argv[]) {
 
    	while(quit == false) {
 
-		if(SensorRead(&id, &val1, &val2) == SENSOR_TRUE)
-			KWSA_INFO("(%4d   %.2f   %.2f ) \n", id, val1, val2);
+		if(SensorRead(&count, &sender, &val1, &val2) == SENSOR_TRUE)
+			KWSA_INFO("(sender addr: %2d %4d   %.2f   %.2f ) \n", sender, count, val1, val2);
 		else
 			if(sensor.fd >= 0)
 				KWSA_DEBUG("No data \n");
 
-		if(id != expected)
+		if(count != expected)
 			KWSA_ERROR("!!!!!!!!!!!!!!!!  Failed to get Expected ID !!!!!!!!!!!!!!!!!!1 \n");
-		expected = id + 1;
+		expected = count + 1;
 
    		sleep(1);
 
