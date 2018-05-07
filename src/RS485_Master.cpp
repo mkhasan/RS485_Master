@@ -11,14 +11,14 @@
 
 using namespace std;
 
-#define DEVICE_INDEX 1
+
+#define KWSA_DEBUG(...)
+
 
 extern sensorRecord sensor;
 
 bool quit = false;
 uint8_t addr = 5;
-
-#define MAX_NO_OF_NODES 20
 
 uint8_t nodeList[MAX_NO_OF_NODES] = {addr };
 int nNodes = 1;
@@ -125,15 +125,20 @@ int main(int argc, char *argv[]) {
 
    	while(quit == false) {
 
-		if(SensorRead(&count, &sender, &val1, &val2) == SENSOR_TRUE)
+		if(SensorRead(&count, &sender, &val1, &val2) == SENSOR_TRUE) {
 			KWSA_INFO("(sender addr: %2d %4d   %.2f   %.2f ) \n", sender, count, val1, val2);
+
+			if(count != expected)
+				;//KWSA_ERROR("!!!!!!!!!!!!!!!!  Failed to get Expected ID (%d)!!!!!!!!!!!!!!!!!!1 \n", expected);
+
+			if(sender == nodeList[nNodes-1])
+				expected = count + 1;
+
+		}
 		else
 			if(sensor.fd >= 0)
 				KWSA_DEBUG("No data \n");
 
-		if(count != expected)
-			KWSA_ERROR("!!!!!!!!!!!!!!!!  Failed to get Expected ID !!!!!!!!!!!!!!!!!!1 \n");
-		expected = count + 1;
 
    		sleep(1);
 

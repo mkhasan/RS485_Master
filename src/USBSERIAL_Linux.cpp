@@ -30,6 +30,9 @@
 extern char key;
 extern uint8_t addr;
 
+extern uint8_t nodeList[MAX_NO_OF_NODES];
+extern int nNodes;
+
 extern bool quit;
 
 
@@ -74,12 +77,18 @@ void * USB2SERIAL_LINUX(void *ptr) {
 
 	if(ret != SENSOR_OK)
 		KWSA_DEBUG("USB2SERIAL_LINUX: ret is %d Global error is %d \n", ret, LastErrorGlobal);
+
+	static int turn = 0;
 	while (quit == false) {
 
 		SensorGetValue();
 
+		if(turn == nNodes -1)
+			usleep(5000000);
+		else
+			usleep(1000000);
 
-		usleep(1000000);
+		turn = (turn+1) % nNodes;
 	}
 
 	ret = SensorRelease();
@@ -110,17 +119,19 @@ void * data_pump(void *ptr) //war static void
 				*/
 
 
+		//KWSA_DEBUG("before reading \n");
 
 		tmp->in_count = read(tmp->fd, tmp->in_buffer + tmp->in_pos,
 							 tmp->in_missing); //&tmp->action_read);
 
-		/*
+		//KWSA_DEBUG("before reading %d\n", tmp->in_count);
+
 		for (int i=0; i<tmp->in_count; i++) {
-			KWSA_DEBUG("%x ", *(tmp->in_buffer + tmp->in_pos+i));
+			printf("%x ", *(tmp->in_buffer + tmp->in_pos+i));
 
 		}
-		KWSA_DEBUG("\n");
-		*/
+		printf("\n");
+
 
 
 		if(!tmp->in_count)	{//wenn nix gelesen: -> if not read:
@@ -201,6 +212,7 @@ void move_data(sensorRecord *tmp)
 		sensordata t;
 		unsigned long inx;
 		char suffix[2];
+		unsigned int temp=0;
 
 
 		if (*p == DATA_KEY)
@@ -215,11 +227,28 @@ void move_data(sensorRecord *tmp)
 
 			/* Restanzahl berechnen */
 			j -= FRAME_SIZE;
-			p++;
+			p += 2;
 
-			p++;
 
+			t.count = *p | (*(p+1) << 8) | (*(p+2) << 16);
+
+			p += 3;
+
+			memcpy(&temp, p, 4);
+
+			t.sender = (temp & 0xFF000000) >> 24;
+			t.value1 = (temp & 0xFFF000) >> 12;
+			t.value2 = temp & 0xFFF;
+
+			p+= 4;
+
+			//if(*p != '0')
+				//KWSA_ERROR("Recv Data format error \n");
+
+			//if(t.sender == 0)
+				//KWSA_ERROR("read values (%d %d) \n", t.value1, t.value2);
 			//KWSA_DEBUG("REQ val is %x \n", *p);
+			/*
 			memcpy((void *)&t.id, p, sizeof(unsigned int));
 			p += sizeof(unsigned int);
 			memset((void *)&t.value1, 0, sizeof(t.value1));
@@ -237,34 +266,42 @@ void move_data(sensorRecord *tmp)
 			*((unsigned char *)&t.value2 + 1) = (p[0]);
 			*((unsigned char *)&t.value2 + 0) = (p[1]);
 
+			*/
 			/* gesch�tzten Daten-Lese-Bereich betreten */
-			if(pthread_mutex_lock(&tmp->io_mutex) == 0) {
-					/* �berspringen, wenn Buffer clear gefordert */
-				if (!tmp->clear)
-				{
-					/* Wert und Status in Datenpuffer legen und */
-					/* Zeiger etc. anpassen */
+			unsigned char dataCrc = MY_LIB::crcCalc(temp, 32, 0x1A9);
 
-					if (tmp->out_count < tmp->out_size)
-						tmp->out_count++;
-					else				//Buffer voll: alte Werte ueberschreiben
-						tmp->out_get = (tmp->out_get + 1) % tmp->out_size;
+			if(dataCrc == *p) {
+				//KWSA_DEBUG("crc IS %d \n", dataCrc);
+				if(pthread_mutex_lock(&tmp->io_mutex) == 0) {
+						/* �berspringen, wenn Buffer clear gefordert */
+					if (!tmp->clear)
+					{
+						/* Wert und Status in Datenpuffer legen und */
+						/* Zeiger etc. anpassen */
 
-					*(tmp->out_buffer+tmp->out_put)= t;
-					//tmp->out_buffer[tmp->out_put].value1 = t.value1;
-					tmp->out_put = (tmp->out_put + 1) % tmp->out_size;
+						if (tmp->out_count < tmp->out_size)
+							tmp->out_count++;
+						else				//Buffer voll: alte Werte ueberschreiben
+							tmp->out_get = (tmp->out_get + 1) % tmp->out_size;
+
+						*(tmp->out_buffer+tmp->out_put)= t;
+						//tmp->out_buffer[tmp->out_put].value1 = t.value1;
+						tmp->out_put = (tmp->out_put + 1) % tmp->out_size;
+
+					}
+					pthread_mutex_unlock(&tmp->io_mutex);
+								  /* geschützten Daten-Lese-Bereich verlassen */
+
+
+					if (tmp->clear)
+						return;
 
 				}
-				pthread_mutex_unlock(&tmp->io_mutex);
-							  /* geschützten Daten-Lese-Bereich verlassen */
-
-
-				if (tmp->clear)
-					return;
-
+				else
+					tmp->error = ERR_MUTEXFAILED;
 			}
 			else
-				tmp->error = ERR_MUTEXFAILED;
+				KWSA_ERROR("CRC Check error \n");
 		}
 		/* sonstige Zeichen */
 		else
@@ -551,8 +588,11 @@ int SensorGetValue() {
 	{
 		sensor.LastError= TTY_WRITE_ERROR;
 		res= SENSOR_ERROR;
+
 	}
 
+	//for (int i=0; i<15; i++)
+		//printf("%x \n", txbuf[i]);
 
 
 
@@ -691,16 +731,15 @@ int SensorRead(unsigned int* count, unsigned int* addr,  double* out1, double* o
 		{
 
 
-			id = tmp->out_buffer[tmp->out_get].id;
+			*count = tmp->out_buffer[tmp->out_get].count;
+			*addr = (unsigned int) tmp->out_buffer[tmp->out_get].sender;
 			*out1 = CalcData(tmp->out_buffer[tmp->out_get].value1);
 			*out2 = CalcData(tmp->out_buffer[tmp->out_get].value2);
 			tmp->out_get = (tmp->out_get + 1) % tmp->out_size;
 			tmp->out_count--;
 
-			p = (unsigned char *)&id;
-			*addr = (unsigned int) p[3];
-			*count = id & 0x0FFF;
-			//KWSA_DEBUG("%d \n", tmp->out_count);
+			//if(tmp->out_buffer[tmp->out_get].sender == 0)
+				//KWSA_DEBUG("value1,2 are %d %d \n", tmp->out_buffer[tmp->out_get].value1, tmp->out_buffer[tmp->out_get].value2);
 		}
 
 		pthread_mutex_unlock(&tmp->io_mutex);
@@ -863,6 +902,12 @@ set_blocking (int fd, int should_block)
 static int ComputeMsg(uint8_t *buf) {
 	//sprintf((char*)txbuf, "%cGET VALUE %03d%c", STX, addr, ETX);
 
+	static int turn = 0;
+
+	uint8_t addr = nodeList[turn++];
+
+	turn %= nNodes;
+
 	uint32_t msg = addr;
 	uint32_t polynom = 0b11001;
 	uint8_t crc = MY_LIB::crcCalc(msg, 8, polynom);
@@ -885,6 +930,7 @@ static int ComputeMsg(uint8_t *buf) {
 	int len = p-buf;
 	KWSA_ASSERT(len == 15);
 
+	//KWSA_DEBUG("Requesting data for addr %d \n", addr);
 	return len;
 
 

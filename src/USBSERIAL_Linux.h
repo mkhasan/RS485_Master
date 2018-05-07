@@ -8,6 +8,8 @@
 
 
 
+#define MAX_NO_OF_NODES 20
+
 #define STX 'X'
 #define ETX 'Y'
 
@@ -145,10 +147,11 @@ typedef unsigned int DWORD;
 
 typedef struct _sensordata
 {
-	volatile unsigned int id;
+	volatile unsigned int count;
+	volatile unsigned char sender;
 	volatile unsigned long value1;
 	volatile unsigned long value2;
-	volatile unsigned char status; //[4];   /* Status*/
+
 } sensordata;
 
 struct sensorRecord	//fuer je 1 GSV-4 mit CHAN_NO=4 Kanaelen
