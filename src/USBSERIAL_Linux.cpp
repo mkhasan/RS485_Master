@@ -10,6 +10,8 @@
 
 #include "util.h"
 
+#include "config.h"
+
 #include <string.h>
 #include <errno.h>
 #include <pthread.h>
@@ -35,6 +37,8 @@ extern int nNodes;
 
 extern bool quit;
 
+GET_DEF_VALUES(A,double);
+GET_DEF_VALUES(B,double);
 
 
 static	long baud_table[] =
@@ -52,6 +56,7 @@ static tcflag_t BaudrateToBaudrateCode( unsigned long baudrate );
 //static int ConditionTimeout(pthread_cond_t *pCondition, pthread_mutex_t *pMutex, int * pEvent, unsigned long timoutUs);
 
 static double CalcData(const unsigned long val);
+static double CalcData(const unsigned long val, uint8_t addr, int port);
 static void set_blocking (int fd, int should_block);
 static int set_interface_attribs (int fd, int speed, int parity);
 static int ComputeMsg(uint8_t *p);
@@ -733,8 +738,9 @@ int SensorRead(unsigned int* count, unsigned int* addr,  double* out1, double* o
 
 			*count = tmp->out_buffer[tmp->out_get].count;
 			*addr = (unsigned int) tmp->out_buffer[tmp->out_get].sender;
-			*out1 = CalcData(tmp->out_buffer[tmp->out_get].value1);
-			*out2 = CalcData(tmp->out_buffer[tmp->out_get].value2);
+			*out1 = CalcData(tmp->out_buffer[tmp->out_get].value1, (uint8_t)*addr, 0);
+			//*out2 = CalcData(tmp->out_buffer[tmp->out_get].value2);
+			*out2 = CalcData(tmp->out_buffer[tmp->out_get].value2, (uint8_t)*addr, 1);
 			tmp->out_get = (tmp->out_get + 1) % tmp->out_size;
 			tmp->out_count--;
 
@@ -830,11 +836,25 @@ int SensorRelease()
 double CalcData(const unsigned long val) {
 
 	//printf("value is %ld \n", val);
-	double ret =  ((double)val*0.0382 + 3.6165);
+	//double ret =  ((double)val*0.0382 + 3.6165);
+
+	//int index = 1;
+		//KWSA_INFO("Value is %f \n", get_def_values_A(index));//SHIFT(A,1)));
+		//exit(1);
+
+	double ret = (double)val*0.0566 - 57.93;
 
 	return ret;
 }
 
+double CalcData(const unsigned long val, uint8_t addr, int port) {
+
+
+	double temp = (double)val*0.0566 - 57.93;
+
+	double shift = port == 0 ? get_def_values_A((int)addr) : get_def_values_B((int)addr);
+	return temp+shift;
+}
 
 int
 set_interface_attribs (int fd, int speed, int parity)

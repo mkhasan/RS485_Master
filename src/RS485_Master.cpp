@@ -4,10 +4,13 @@
 
 #include "util.h"
 
+
+
 #include <stdio.h>
 #include <pthread.h>
 #include <iostream>
 #include <signal.h>
+
 
 using namespace std;
 
@@ -44,6 +47,8 @@ static void sighand(int sig)
 }
 int main(int argc, char *argv[]) {
 //	printf("hello hasan \n");
+
+
 
 
 	char dev[256] = "/dev/ttyUSB";

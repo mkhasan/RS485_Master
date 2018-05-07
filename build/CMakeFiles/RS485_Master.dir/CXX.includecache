@@ -681,6 +681,8 @@ USBSERIAL_Linux.h
 /home/usrc/Kiswire/RS485_Master/src/USBSERIAL_Linux.h
 util.h
 /home/usrc/Kiswire/RS485_Master/src/util.h
+config.h
+/home/usrc/Kiswire/RS485_Master/src/config.h
 string.h
 -
 errno.h
@@ -717,6 +719,8 @@ pthread.h
 -
 ace/Log_Msg.h
 /home/usrc/Kiswire/RS485_Master/src/ace/Log_Msg.h
+
+/home/usrc/Kiswire/RS485_Master/src/config.h
 
 /home/usrc/MyLib/src/util.h
 string
